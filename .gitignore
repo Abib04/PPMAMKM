@@ -1,0 +1,15 @@
+vendor/
+cache/
+database-backup/
+php.ini
+.user.ini
+.DS_Store
+*.apk
+BACKUP/
+config/config.php
+autologin.php
+resource/mahasiswa/
+resource/assets/images/qrcode/
+resource/assets/images/barcode/
+*.log
+*.tmp

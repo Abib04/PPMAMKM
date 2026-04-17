@@ -1,0 +1,398 @@
+<?php
+if(!defined('BASE_PATH'))
+    exit("Maaf, anda tidak bisa mengakses halaman.");
+
+$def_table = array("sesi","sesi_ruang_oh","sesi_ruang_om","sesi_ruang_pk");
+
+$op = cleanchar($_GET['op']);
+
+if(is_null($op)){
+    
+    include "error/page_404.php";
+    
+}else{
+    
+    $id = (isset($_GET['id'])) ? cleanchar($_GET['id']) : NULL;
+    
+    $table = cleanchar($_GET['t']);
+    
+    $data = array();
+    
+    if($op == "create" or $op == "update"){
+        
+        if($table == $def_table[0]){
+         
+            $data = array(
+                    "nama_sesi" => cleanchar($_POST['nama_sesi']),
+                    "jam_mulai" => cleanchar($_POST['jam_mulai']),
+                    "jam_akhir" => cleanchar($_POST['jam_akhir']),
+                    "id_acara" => cleanchar($_POST['acara']),
+                    "tanggal" => cleanchar($_POST['tanggal'])
+            );
+            
+        }else if($table == $def_table[1]){
+            
+            $data = array(
+                    "id_kel" => cleanchar($_POST['kel'])
+            );
+            
+        }else if($table == $def_table[2]){
+
+            $data = array(
+                    // "id_sesi" => cleanchar($_POST['sesi']),
+                    "id_ruang" => cleanchar($_POST['ruang']),
+                    "npm" => cleanchar($_POST['npm'])
+            );
+
+        }
+        
+    }
+    
+    if($op == "create"){
+        
+        if(in_array($table, $def_table)){
+            if($table == $def_table[0]){
+                
+                if(db_insert($def_table[0], $data)){
+                    echo "true";
+                }else{
+                    echo $_SESSION['err_message'];
+                }
+                
+            }else if($table == $def_table[1]){
+
+                $sql = db_read("select id_sesi from vsesi where id_acara='3' AND jam_mulai='".cleanchar($_POST['jam'])."' limit 1");
+
+                if(count($sql) > 0){
+                    $ruang = db_read("select id_ruang, max_kuota from vdivroom where id_acara='3'");
+                    if(count($ruang) > 0){
+                        foreach ($ruang as $k_ruang=>$v_ruang){
+                            $jumlah = db_read("select count(id_kel) as jumlah from sesi_ruang_oh where id_ruang='".$v_ruang['id_ruang']."' AND id_sesi='".$sql[0]['id_sesi']."'");
+                            if($v_ruang['max_kuota'] > $jumlah[0]['jumlah']){
+                                if(checkExist($_SESSION['username'])){
+                                    echo "Maaf, maksimal yang dapat hadir pada acara open house adalah 1 orang.";
+                                }else{
+                                    $data['id_sesi'] = $sql[0]['id_sesi'];
+                                    $data['id_ruang'] = $v_ruang['id_ruang'];
+                                    if(db_insert($def_table[1], $data)){
+                                        echo "true";
+                                        break;
+                                    }else{
+                                        echo $_SESSION['err_message'];
+                                    }
+                                }
+                            }
+                        }
+                    }else{
+                        echo "Maaf, ruangan untuk open house belum ditentukan";
+                    }
+                }else{
+                    echo "Maaf, saat ini pendaftaran belum bisa dilakukan.";
+                }
+                
+            }else if($table == $def_table[2]){
+                $ruang = db_read("select id_ruang, max_kuota from vdivroom where id_acara='2'");
+                $msg = NULL;
+                if(count($ruang) > 0){
+                    foreach ($ruang as $k_ruang => $v_ruang) {
+                        $jumlahMhs = db_read("select count(npm) as jumlah from sesi_ruang_om where id_ruang='".$v_ruang['id_ruang']."'");
+                        $available_quotas = $v_ruang['max_kuota'] - $jumlahMhs[0]['jumlah'];
+                        if($available_quotas > 0){
+                            $query = "SELECT npm FROM mahasiswa mhs where not exists(
+                                        select npm from sesi_ruang_om om where om.npm = mhs.npm
+                                    ) order by rand() limit " . $v_ruang['max_kuota'];
+
+                            $sql = db_read($query);
+                            
+                            if(count($sql) > 0){
+                                foreach ($sql as $key => $value) {
+                                    $data = array(
+                                                "npm" => $value['npm'],
+                                                "id_ruang" => $v_ruang['id_ruang']
+                                    );
+                                    if(db_insert($def_table[2], $data)){
+                                        $msg = "true";
+                                    }else{
+                                        $msg = $_SESSION['err_message'];
+                                    }
+                                }
+                            }else{
+                                $msg = "Proses Selesai";
+                                break;
+                            }
+                        }
+                    }
+                    echo $msg;
+                }else{
+                    echo "Ruang belum ditetapkan";
+                }
+            }elseif($table == $def_table[3]){
+                $ruang = db_read("select id_ruang, max_kuota from vdivroom where id_acara='1'");
+                $msg = NULL;
+                if(count($ruang) > 0){
+                    $tanggal = db_read("select tanggal_mulai, tanggal_selesai from acara where id_acara='1'");
+                    if(count($tanggal) > 0){
+                        $date = getBetweenDates($tanggal[0]['tanggal_mulai'], $tanggal[0]['tanggal_selesai']);
+                        $jmlMhs = db_read("select count(npm) as jumlah from mahasiswa");
+                        $kloter = $jmlMhs[0]['jumlah'] / count($date);
+                        for ($i = 0; $i < count($date); $i++){
+                            foreach ($ruang as $k_ruang => $v_ruang){
+                                $query = "SELECT npm FROM mahasiswa mhs where not exists(
+                                        select npm from sesi_ruang_pk pk where pk.npm = mhs.npm
+                                    ) order by rand() limit " . intval($kloter);
+
+                                $sql = db_read($query);
+
+                                $jumlahMhsDiRuangan = db_read("select count(npm) as jumlah from sesi_ruang_pk where id_ruang='" . $v_ruang['id_ruang'] . "'");
+                                $available_quotas = $v_ruang['max_kuota'] - $jumlahMhsDiRuangan[0]['jumlah'];
+                                if ($available_quotas > 0) {
+                                    for($j = 0; $j < $available_quotas; $j++){
+                                        $data = array(
+                                            "npm" => $sql[$j]["npm"],
+                                            "tanggal" => $date[$i],
+                                            "id_ruang" => $v_ruang['id_ruang'],
+//                                            "id_sesi" => '19'
+                                        );
+                                        if(db_insert($def_table[3], $data)){
+//                                            $sql = array_splice($sql, $j, 1);
+                                            $msg = "true";
+                                        }else{
+                                            $msg = "Proses Selesai";
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+//                        $sesi = db_read("SELECT id_sesi,nama_sesi,jam_mulai,jam_akhir FROM `sesi` where id_acara=1 limit 3");
+//                        if(count($sesi) > 0){
+//                            $ruang = db_read("select id_ruang, max_kuota from vdivroom where id_acara='1'");
+//                            foreach ($ruang as $k=>$v){
+//                                $jumlahMhsDiRuangan = db_read("select count(npm) as jumlah from sesi_ruang_pk where id_ruang='" . $v['id_ruang'] . "' AND id_sesi='19'");
+//                                $div_3 = $jumlahMhsDiRuangan[0]['jumlah']/3;
+//                                $res = intval($div_3);
+//                                for($i = 0; $i < 3; $i++){
+//                                    foreach ($sesi as $k_sesi=>$v_sesi){
+//                                        echo $q = "update sesi_ruang_pk set id_sesi='".$v_sesi['id_sesi']."' where id_sesi_pk in(
+//                                                    select id_sesi_pk from(
+//                                                        select id_sesi_pk from sesi_ruang_pk where id_ruang='".$v_ruang['id_ruang']."' AND id_sesi='19' order by id_sesi_pk asc limit $res
+//                                                    ) tmp
+//                                                )";
+//                                        echo "<br />";
+//                                        $sql = db_free_query($q);
+//                                        if($sql){
+//                                            $msg = TRUE;
+//                                        }else{
+//                                            $msg = FALSE;
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                        }else{
+//                            echo "Sesi belum ditetapkan";
+//                        }
+
+                        if($msg){
+                            echo "Proses Berhasil";
+                        }else{
+                            echo $_SESSION['err_message'];
+                        }
+                    }else{
+                        echo "Tanggal belum ditetapkan";
+                    }
+                }else{
+                    echo "Ruang belum ditetapkan";
+                }
+            }
+        }
+        
+    }elseif($op == "read"){
+        
+        if(in_array($table, $def_table)){
+            if($table == $def_table[0]){
+                
+                if(!is_null($id)){
+                    echo json_encode(db_read("select * from $def_table[0] where id_sesi='$id'"));
+                }else{
+                    echo json_encode(db_read("select * from $def_table[0]"));
+                }
+                
+            }else if($table == $def_table[1]){
+                
+                if(!is_null($id)){
+                    echo json_encode(db_read("select * from $def_table[1] where id_sesi_oh='$id'"));
+                }else{
+                    echo json_encode(db_read("select * from $def_table[1]"));
+                    echo json_last_error_msg();
+                }
+                
+            }else if($table == $def_table[2]){
+                
+                if(!is_null($id)){
+                    echo json_encode(db_read("select * from $def_table[2] where id_sesi_om='$id'"));
+                }else{
+                    echo json_encode(db_read("select * from $def_table[2]"));
+                }
+                
+            }else if($table == $def_table[3]){
+
+                if(!is_null($id)){
+                    echo json_encode(db_read("select * from $def_table[3] where id_sesi_pk='$id'"));
+                }else{
+                    echo json_encode(db_read("select * from $def_table[3]"));
+                }
+
+            }
+        }
+        
+    }elseif($op == "read_full"){
+        if(in_array($table, $def_table)){
+            if($table == $def_table[0]){
+
+                if(!is_null($id)){
+                    echo json_encode(db_read("select * from vsesi where id_sesi='$id'"));
+                }else{
+                    echo json_encode(db_read("select * from vsesi"));
+                }
+
+            }else if($table == $def_table[1]){
+
+                if(!is_null($id)){
+                    echo json_encode(db_read("select * from vsesi_oh where id_sesi_oh='$id'"));
+                }else{
+                    echo json_encode(db_read("select * from vsesi_oh"));
+                }
+
+            }else if($table == $def_table[2]){
+
+                if(!is_null($id)){
+                    echo json_encode(db_read("select * from vsesi_om where id_sesi_om='$id'"));
+                }else{
+                    echo json_encode(db_read("select * from vsesi_om"));
+                }
+
+            }else if($table == $def_table[3]){
+
+                if(!is_null($id)){
+                    echo json_encode(db_read("select * from vsesi_pk where id_sesi_pk='$id'"));
+                }else{
+                    echo json_encode(db_read("select * from vsesi_pk"));
+                }
+
+            }
+        }
+    }elseif($op == "update"){
+        
+        if(in_array($table, $def_table)){
+            if($table == $def_table[0]){
+                
+                if(is_null($id) == FALSE){
+
+                    if(db_update($def_table[0], $data, array("id_sesi" => $id))){
+                        echo "true";
+                    }else{
+                        echo $_SESSION['err_message'];
+                    }
+                }
+                
+            }else if($table == $def_table[1]){
+                
+                if(is_null($id) == FALSE){
+                    
+                    if(db_update($def_table[1], $data, array("id_sesi_oh" => $id))){
+                        echo "true";
+                    }else{
+                        echo $_SESSION['err_message'];
+                    }
+                }
+                
+            }else if($table == $def_table[2]){
+                
+                if(is_null($id) == FALSE){
+                   
+                    if(db_update($def_table[2], $data, array("id_sesi_om" => $id))){
+                        echo "true";
+                    }else{
+                        echo $_SESSION['err_message'];
+                    }
+                    
+                }
+                
+            }
+        }
+        
+    }elseif($op == "delete"){
+        
+        if(in_array($table, $def_table)){
+            if($table == $def_table[0]){
+                
+                if(is_null($id) == FALSE){
+                    
+                    if(db_delete($def_table[0], array("id_sesi" => $id))){
+                        echo "true";
+                    }else{
+                        echo $_SESSION['err_message'];
+                    }
+                    
+                }
+                
+            }else if($table == $def_table[1]){
+                
+                if(is_null($id) == FALSE){
+                    $id_kel = isset($_GET['id_kel']) ? cleanchar($_GET['id_kel']) : NULL;
+                    if(db_delete($def_table[1], array("id_sesi_oh" => $id))){
+                        $photo = getcwd().'/resource/mahasiswa/file_kehadiran_ortu/'.cleanchar($_GET['npm']).'.jpg';
+                        if(file_exists($photo)){
+                            unlink($photo);
+                        }
+
+                        if(db_update("keluarga",array("file_kehadiran"=>""),array("id_kel"=>$id_kel))){
+                            echo "true";
+                        }else{
+                            if(($_SESSION['err_message']) == ""){
+                                echo "true";
+                            }else{
+                                echo $_SESSION['err_message'];
+                            }
+                        }
+                    }else{
+                        echo $_SESSION['err_message'];
+                    }
+                    
+                }
+                
+            }else if($table == $def_table[2]){
+                
+                if(is_null($id) == FALSE){
+                    
+                    if(db_delete($def_table[2], array("id_sesi_om" => $id))){
+                        echo "true";
+                    }else{
+                        echo $_SESSION['err_message'];
+                    }
+                    
+                }
+                
+            }else if($table == $def_table[3]){
+
+                if(is_null($id) == FALSE){
+
+                    if(db_delete($def_table[3], array("id_sesi_pk" => $id))){
+                        echo "true";
+                    }else{
+                        echo $_SESSION['err_message'];
+                    }
+
+                }
+
+            }
+        }
+        
+    }else{
+        
+        include "error/page_404.php";
+        
+    }
+    
+}

@@ -1,0 +1,441 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --primary: #390a61;
+    --primary-light: #521d82;
+    --accent: #f39c12; /* Orange Amikom guideline */
+    --bg: #f3f4f6; /* Gray-100 per client request */
+    --text: #0f172a;
+    --text-muted: #64748b;
+    --card-bg: #ffffff;
+    --glass: rgba(255, 255, 255, 0.85);
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    width: 100% !important;
+    max-width: 1000px !important;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Header & Hero */
+.hero-header {
+    background-color: var(--primary);
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(82, 29, 130, 0.8) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(57, 10, 97, 0.9) 0%, transparent 50%);
+    background-size: 200% 200%;
+    animation: waveFlow 15s ease infinite; /* Ambient breathing effect! */
+    padding: 80px 0 140px;
+    text-align: center;
+    clip-path: ellipse(110% 100% at 50% 0%); /* Deepened curve so it's beautifully visible on wide desktop screens */
+    margin-bottom: -60px;
+    position: relative;
+    z-index: 10;
+}
+
+.hero-header img.top-brand {
+    height: 80px;
+    filter: brightness(0) invert(1);
+    margin-bottom: 24px;
+    transition: transform 0.5s ease;
+}
+
+.hero-header img.top-brand:hover {
+    transform: scale(1.05);
+}
+
+.year-badge {
+    background: var(--accent);
+    color: var(--primary);
+    padding: 8px 24px;
+    border-radius: 100px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: inline-block;
+    box-shadow: 0 10px 20px rgba(255, 159, 28, 0.3);
+}
+
+/* Navigation - Floating Pill (Desktop Default) */
+.nav-wrapper {
+    background: linear-gradient(135deg, #f5a623 0%, #e67e22 100%);
+    background-size: 200% 200%;
+    animation: waveFlow 10s ease infinite; /* Ambient flowing orange wave! */
+    border: 4px solid #ffffff;
+    border-radius: 50px;
+    padding: 12px 24px !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 15; /* On desktop, sit visibly on top of the arc */
+}
+
+.main-nav {
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    flex-wrap: nowrap;
+    gap: 5px; /* Smaller gap */
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.main-nav li {
+    float: none !important;
+}
+
+.main-nav li a {
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-weight: 800; /* Bolder text to remain legible at small size */
+    font-size: 0.75rem; /* Shrunk font so all items fit nicely without scrolling */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap !important;
+
+    padding: 6px 12px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    display: block;
+    border: none !important;
+}
+
+.main-nav li a:hover {
+    background: rgba(0, 0, 0, 0.15); /* Slightly darker hover */
+    color: #ffffff !important;
+}
+
+/* Hide scrollbar for menu wrapper */
+#menu_a::-webkit-scrollbar {
+    display: none;
+}
+#menu_a {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Nav Auth Buttons */
+.nav-auth-btns {
+    display: flex;
+    gap: 12px;
+}
+
+.nav-auth-btns .btn-nav {
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-weight: 800; /* Extra bold to pop against nav */
+    font-size: 0.9rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.nav-auth-btns .btn-login {
+    background: white;
+    color: #e67e22; /* Text color matches the dark orange gradient */
+    animation: pulseCta 2.5s infinite; /* Pulsing attention grabber */
+}
+
+.nav-auth-btns .btn-login:hover {
+    background: #f8fafc;
+    transform: translateY(-3px) scale(1.02); /* Springy expert hover */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.nav-auth-btns .btn-register {
+    background: var(--primary);
+    color: white;
+}
+
+.nav-auth-btns .btn-register:hover {
+    background: var(--primary-light);
+    transform: translateY(-2px);
+}
+
+/* Auth Cards */
+.login-section {
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 48px;
+    max-width: 450px;
+    margin: 0 auto 40px;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.08);
+}
+
+.login-section h3 {
+    margin: 0 0 32px;
+    font-weight: 800;
+    font-size: 1.75rem;
+    color: var(--primary);
+    text-align: center;
+}
+
+#formlogin label {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    display: block;
+}
+
+#formlogin input {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 14px;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    margin-bottom: 20px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+#formlogin input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(57, 10, 97, 0.1);
+}
+
+#formlogin .login {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 16px;
+    width: 100%;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(57, 10, 97, 0.2);
+    transition: all 0.3s ease;
+}
+
+#formlogin .login:hover {
+    background: var(--primary-light);
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(57, 10, 97, 0.3);
+}
+
+/* Content Cards */
+.content-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 48px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Soft gray shadow */
+    border: 1px solid #e5e7eb; /* Soft gray border per client */
+}
+
+.content-card h1, .content-card h2, .content-card h3 {
+    color: var(--primary);
+    font-weight: 800;
+    margin-top: 0;
+}
+
+.content-card p {
+    font-size: 1.1rem;
+    color: #475569;
+    line-height: 1.8;
+}
+
+/* Original Components Styling Overrides */
+.panel {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin-bottom: 0 !important;
+}
+
+.panel-heading {
+    border: none !important;
+    background: transparent !important;
+    font-weight: 800 !important;
+    font-size: 1.5rem !important;
+    color: var(--primary) !important;
+    padding: 0 0 24px 0 !important;
+    text-align: left !important;
+}
+
+.panel-body {
+    padding: 0 !important;
+}
+
+/* Footer Styling */
+footer {
+    padding: 80px 0 40px;
+    background: white;
+    margin-top: 80px;
+}
+
+.footer-content {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+/* Ultra Premium Keyframe Animations */
+@keyframes waveFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); box-shadow: 0 25px 45px rgba(0,0,0,0.4); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseCta {
+    0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.6); }
+    70% { box-shadow: 0 0 0 15px rgba(255, 255, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+}
+
+/* Stagger Entry Logic for Menu Pills */
+.main-nav li {
+    opacity: 0;
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.main-nav li:nth-child(1) { animation-delay: 0.1s; }
+.main-nav li:nth-child(2) { animation-delay: 0.15s; }
+.main-nav li:nth-child(3) { animation-delay: 0.2s; }
+.main-nav li:nth-child(4) { animation-delay: 0.25s; }
+.main-nav li:nth-child(5) { animation-delay: 0.3s; }
+.main-nav li:nth-child(6) { animation-delay: 0.35s; }
+.main-nav li:nth-child(7) { animation-delay: 0.4s; }
+
+/* Responsive Fixes & Mobile UI */
+@media (max-width: 768px) {
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+    .container {
+        padding: 0 15px !important;
+    }
+    .content-card {
+        padding: 24px;
+        margin-bottom: 20px;
+    }
+    /* Deepen mobile purple hero */
+    .hero-header {
+        padding: 40px 0 120px;
+        margin-bottom: -80px; 
+        clip-path: ellipse(150% 100% at 50% 0%); 
+        position: relative;
+        z-index: 10;
+    }
+    /* Scale down huge images on mobile to completely prevent horizontal overflow */
+    .top-brand {
+        max-height: 60px !important;
+        max-width: 100% !important;
+        object-fit: contain;
+        margin-bottom: 15px !important;
+    }
+    .hero-header img[alt="PPM 2025 Banner"] {
+        max-height: 120px !important;
+        max-width: 100% !important;
+        height: auto !important;
+        object-fit: contain;
+        border-radius: 12px !important;
+    }
+    .hero-header > .container > div {
+        max-width: 100% !important; /* Stop the glass frame from spilling */
+        padding: 5px !important; 
+        border-radius: 16px !important;
+        box-sizing: border-box;
+    }
+    /* Mobile: Double Wave Sweep */
+    .nav-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        background: transparent !important;
+        border: none !important;
+        border-radius: 0 !important;
+        padding: 80px 15px 80px !important; 
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        box-shadow: none !important;
+        margin-top: 0px; 
+        position: relative;
+        z-index: 5;
+    }
+    
+    .nav-wrapper::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: calc(100% + 20px);
+        background: linear-gradient(135deg, #f5a623 0%, #e67e22 100%);
+        background-size: 200% 200%;
+        animation: waveFlow 10s ease infinite; /* Ambient mobile orange flow */
+        clip-path: ellipse(150% 100% at 50% 0%); 
+        z-index: -1;
+    }
+
+    #menu_a {
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        overflow: hidden; 
+    }
+    .main-nav {
+        flex-wrap: wrap !important; /* CRITICAL: Force items into multiple rows so they all show! */
+        justify-content: center !important; /* Center the grid for a neat look */
+        gap: 8px !important;
+        padding-bottom: 5px !important;
+    }
+    .main-nav li a {
+        background: #ffffff !important; /* Solid white pills */
+        color: #e67e22 !important; /* Orange text for maximum contrast & premium look */
+        padding: 6px 14px;
+        border-radius: 50px !important;
+        font-size: 0.75rem; 
+        font-weight: 800; /* Bold and highly readable now */
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Slight elevation */
+        letter-spacing: 0.5px;
+    }
+    /* Make buttons evenly fill bottom area */
+    .nav-auth-btns {
+        width: 100%;
+        margin-left: 0 !important;
+        justify-content: center;
+        gap: 10px;
+    }
+    .nav-auth-btns .btn-nav {
+        flex: 1; /* Stretch buttons evenly */
+        text-align: center;
+        padding: 14px 10px;
+        border-radius: 12px; /* Modern square-round shape */
+        font-size: 0.85rem;
+    }
+}

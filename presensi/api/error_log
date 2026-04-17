@@ -1,0 +1,8 @@
+[16-Feb-2019 13:09:10 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/ppm/public_html/presensi/api/read.php on line 51
+[16-Feb-2019 17:10:32 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/ppm/public_html/presensi/api/read.php on line 52
+[16-Feb-2019 17:10:45 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/ppm/public_html/presensi/api/read.php on line 52
+[28-Feb-2019 07:53:50 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/ppm/public_html/presensi/api/read.php on line 52
+[02-Mar-2019 01:42:48 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/ppm/public_html/presensi/api/read.php on line 52
+[02-Mar-2019 01:42:55 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/ppm/public_html/presensi/api/read.php on line 52
+[02-Mar-2019 01:43:18 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/ppm/public_html/presensi/api/read.php on line 52
+[02-Mar-2019 01:43:36 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/ppm/public_html/presensi/api/read.php on line 52

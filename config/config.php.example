@@ -1,0 +1,16 @@
+<?php
+function siteURL()
+{
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'on' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+    $domainName = $_SERVER['HTTP_HOST'].'/';
+    return $protocol.$domainName;
+}
+
+DEFINE('BASE_URL', "http://localhost/PPM%20Amikom/");
+
+$config = array(
+    'db_hostname' => 'localhost',
+    'db_uname' => 'root',
+    'db_passwd' => '',
+    'dbname' => 'ppm_2020'
+);

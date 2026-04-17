@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Penggalian Potensi Mahasiswa | UNIVERSITAS AMIKOM Yogyakarta</title>
+    <link rel="shortcut icon" href="resource/assets/images/fav.png">
+    <link rel="stylesheet" href="resource/assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="resource/assets/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="resource/assets/css/bootstrap-datepicker.css" type="text/css">
+    <link rel="stylesheet" href="resource/assets/css/bootstrap.timepicker.css" type="text/css">
+    <link rel="stylesheet" href="resource/assets/css/jquery.dataTables.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" type="text/css">
+    <link rel="stylesheet" href="resource/assets/css/custom.css" type="text/css">
+    <link rel="stylesheet" href="resource/assets/css/docs.css" type="text/css">
+    <link rel="stylesheet" href="resource/assets/css/superfish.css" type="text/css" media="all">
+    <link rel="stylesheet" type="text/css" href="resource/assets/css/dataTables.bootstrap.min.css">
+    <script src="resource/assets/js/jquery.min.js"></script>
+    <script src="resource/assets/js/jquery.validate.min.js"></script>
+    <script src="resource/assets/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
+    <script src="resource/assets/js/bootstrap.timepicker.js"></script>
+    <script src="resource/assets/js/jquery.dataTables.min.js"></script>
+    <script src="resource/assets/js/dataTables.bootstrap.min.js"></script>
+    <script src="resource/assets/js/javascript.cookie.js"></script>
+</head>
+
+<body>
+    <!--<div style="width: 100%; padding: 12px; background: #e74c3c; color: #fff; text-align: center; font-size: 14px; margin-bottom: 48px;">
+        Kamu berada di website lama PPM. Pendaftaran PPM 2021 dialihkan ke website
+        <strong><a href="https://ppm.amikom.id" style="color: #ffe740">ppm.amikom.id</a></strong>
+    -->
+
+
+    <div class="container" style="margin: 0px auto;">
+        <div class="header">
+            <div class="row">
+                <div class="col-xs-6">
+                    <!--<div id="logo_stmik_amikom"></div>-->
+                    <a href="http://www.amikom.ac.id/index.php/main" target="_blank">
+                        <img src="resource/assets/images/logo_stmik_amikom2.jpg">
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-offset-9" id="title_page">
+                    <div id="menu_main">PPM 2021</div>
+                </div>
+            </div>
+            <div class="row" style="height: 135px;background: #FFF;padding:0; border-top-left-radius:3em;border-top-right-radius:0.8em;">
+                <div class="col-xs-9" style="padding-left: 0; padding-right: 0">
+                    <!--<a href="http://kemahasiswaan.amikom.ac.id" target="_blank">
+						    <div style="background: transparent url() no-repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; height: 135px; outline-color: rgb(255, 0, 0); outline-width: 1px; background-size:cover;border-top-left-radius: 0.8em;"></div>
+				        </a>-->
+                </div>
+                <div class="col-xs-3" id="student">
+                    <!--<div class="title">LOGIN AREA</div>-->
+                    <form id="formlogin" method="post" action="http://ppm.amikom.ac.id/login.php">
+
+
+                        <label>Nomor Mahasiswa</label>
+                        <input name="username" size="15" id="usr" class="usr" type="text" placeholder="__.__.____">
+                        <label>Password</label>
+                        <input name="password" size="15" id="pwd" class="pwd" type="password">
+                        <br>
+                        <input value=" Login " class="login" type="submit">
+                        <a href="http://ppm.amikom.ac.id/media.php?page=reg_mhs" class="login" style="margin-right: 68px;"><b style="font-size: 11px;">Registrasi PPM</b></a>
+
+                    </form>
+                </div>
+                <div class="col-xs-12" id="menu_a" style="border-bottom-left-radius:0.8em;border-bottom-right-radius:0.8em;">
+                    <div id="menu_domain">
+                        <ul class="sf-menu sf-js-enabled sf-shadow" style="margin:0;padding-left:10px;">
+                            <li>
+                                <a href="http://ppm.amikom.ac.id/">Beranda </a>
+                            </li>
+                            <li>
+                                <a href="http://ppm.amikom.ac.id/media.php?page=info_ppm">Informasi PPM </a>
+                            </li>
+                            <li>
+                                <a href="http://ppm.amikom.ac.id/media.php?page=kritik_saran">Kritik dan Saran</a>
+                            </li>
+                            <li>
+                                <a href="http://ppm.amikom.ac.id/media.php?page=faq">FAQ</a>
+                            </li>
+                            <li>
+                                <a href="http://ppm.amikom.ac.id/media.php?page=cek_cert">Cek Sertifikat</a>
+                            </li>
+                            <li>
+                                <a href="http://ppm.amikom.ac.id/media.php?page=lupa_password">Lupa Password</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="border-radius:0.8em; margin-top:5%; background: #FFF; padding-top: 20px">
+            <div class="col-xs-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading" align="center"><b>Info</b></div>
+                    <div class="panel-body">
+
+                        <p><b>Batas Akhir Pendaftaran PPM 2021</b></p>
+
+                        <p align="justify">Halo Kak, Slemat Datang di AMIKOM,, Buruan join ya di ppm dengan cara mendaftar di web ppm.amikom.ac.id, kita tunggu hingga tamggal 11 September 2021 Jangan Sampai Ketinggalan loh ya. . .! </p>
+                        <hr>
+                        <!--<a href='http://ppm.amikom.ac.id/media.php?page=notice&id=14'></a>-->
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" align="center"><b>Sosial Media</b></div>
+                    <div class="panel-body">
+                        <div class="row" align="center">
+                            <div class="col-xs-4">
+                                <a href="https://api.whatsapp.com/send?phone=62895639360060&amp;text=Selamat pagi KAK, mau menanyakan informasi PPM" target="_blank">
+                                    <i class="fa fa-whatsapp fa-3x"></i>
+                                </a>
+                            </div>
+                            <div class="col-xs-4">
+                                <a href="http://twitter.com/ppmamikom" target="_blank">
+                                    <i class="fa fa-twitter-square fa-3x" style="color: #1DA1F2 !important"></i>
+                                </a>
+                            </div>
+                            <div class="col-xs-4">
+                                <a href="http://instagram.com/ppmamikom2020" target="_blank">
+                                    <i class="fa fa-instagram fa-3x" style="color: #5C3428 !important"></i>
+                                </a>
+                            </div>
+                            <!--<div class="col-xs-3">-->
+                            <!--    <a href="https://www.youtube.com/channel/UCNMwEZ8Y3JIod-d22o8yxZQ" target="_blank">-->
+                            <!--        <i class="fa fa-youtube-play fa-3x" style="color: #CC181E !important"></i>-->
+                            <!--    </a>-->
+                            <!--</div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-9">
+                <div class="panel panel-default">
+
+                    <div class="panel-heading" align="center"><b>Penggalian Potensi Mahasiswa</b></div>
+                    <div class="panel-body">
+                        <p align="justify">
+                            <b>PPM itu apa sih?</b><br><br> Penggalian potensi mahasiswa atau yang biasa disebut dengan PPM adalah agenda tahunan yang diselenggarakan oleh Universitas Amikom Yogyakarta dan dijalankan bersama dengan mahasiswa. Didalamnya
+                            berisikan konten Selamat datang ppm galian potensi mahasiswa dan pengenalan kampus, agar mahasiswa baru dapat dengan mudah beradaptasi sebelum memulai perkuliahan umum.
+                        </p>
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Perhatian!</h3>
+                            </div>
+                            <div class="panel-body">
+                                <p align="justify">
+                                    Yang harus dilakukan untuk peserta PPM, yaitu:
+                                </p>
+                                <ul>
+                                    <li>Ganti Password.</li>
+                                    <li>Lengkapi data diri pada masing-masing akun.</li>
+                                    <li>Segera lakukan konfirmasi setelah memiliki Bukti her registrasi ke stand PPM gedung 6 lantai 2 di depan ruangan direktorat kemahasiswaan amikom (hari senin,rabu,jum'at), bisa juga melalui call center ppm amikom ataupun
+                                        sosial media ppm amikom dengan menyertakan bukti registrasi dan file akun mahasiswa</li>
+                                </ul>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <script>
+                    $(document).ready(function() {
+                        $("input[name=kode_pos]").mask("99999");
+                        $("input[name=npm]").mask("99.99.9999");
+                        $("#npm").mask("99.99.9999");
+                        $("input[name=tgl_lahir]").mask("9999-99-99");
+
+                        $("#tabel_ruang").DataTable({
+                            "ordering": false,
+                            "info": false
+                        });
+
+                        //Ruang
+                        $("#formruang").submit(function() {
+                            if ($("input[name=nama_ruang]").val() == "" || $("input[name=max_kuota]").val() == "") {
+                                alert("Lengkapi form terlebih dahulu!");
+                            } else {
+
+                                $("#formruang").attr("action", "http://ppm.amikom.ac.id/data.php?module=mod_ruang&op=create&token=d06b5d59b05afbb314349e333077f53f");
+
+                                var method = $("#formruang").attr("method");
+                                var data = $("#formruang").serialize();
+                                var target = $("#formruang").attr("action");
+
+                                $.ajax({
+                                    type: method,
+                                    url: target,
+                                    data: data,
+                                    beforeSend: function() {
+                                        $("#simpan_ruangan").attr("disabled", "disabled");
+                                    }
+                                }).done(function(response) {
+                                    if (response == "true") {
+                                        alert("Berhasil disimpan");
+                                    } else {
+                                        alert(response);
+                                    }
+                                });
+                            }
+
+                            return false;
+                        });
+                    });
+                </script>
+            </div>
+            <div class="col-xs-12" style="border-top: 1px solid #D0D4D4">
+                <div id="footer">
+
+                    <div id="prefooter">
+
+                        <div id="smartamikom">
+
+                            <img src="http://ppm.amikom.ac.id/resource/assets/images/logo_stmik_amikom2.jpg" style="background-color:#390A61" alt="AMIKOM" height="50"><br>
+
+                            <strong>Kampus Terpadu AMIKOM</strong>
+
+                        </div>
+
+                        <div id="ic">
+
+                            <!--<img src="resource/assets/images/logo_2018.png" alt="Smart AMIKOM" height="50"><br>-->
+
+                            <strong>PPM AMIKOM 2021</strong>
+
+                        </div>
+
+                        <p>Diselenggarakan Oleh :<br>
+                            <a href="http://kemahasiswaan.amikom.ac.id" target="_blank">DIREKTORAT KEMAHASISWAAN</a><br> Jl. Padjajaran, Ring Road Utara, Kel. Condongcatur, Kec. Depok, Kab. Sleman,<br> Prop. Daerah Istimewa Yogyakarta<br>
+                            <!--Telp: (0274) 884201 - 207-->
+                            WA-PPM : <a href="https://api.whatsapp.com/send?phone=62895639360060&amp;text=Selamat%20pagi%20KAK,%20mau%20menanyakan%20informasi%20PPM" target="_blank">+62 895-6393-60060</a>
+                            <br> E-Mail: <a href="mailto:ppm@amikom.ac.id">ppm@amikom.ac.id</a><br>
+
+
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="resource/assets/js/superfish.js"></script>
+    <script src="resource/assets/js/bootstrap-datepicker.js"></script>
+    <script src="resource/assets/js/jquery.bootstrap.wizard.js"></script>
+    <script src="resource/assets/js/js_lib.js"></script>
+    <script src="resource/assets/js/jquery.masked.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            //		$('ul.sf-menu').superfish();
+
+            $("#formlogin").submit(function() {
+                var uname = $("input[name=username]").val();
+                var password = $("input[name=password]").val();
+
+                if (uname == "" || password == "") {
+                    alert("Isi username dan password dengan benar.");
+                } else {
+                    var method = $(this).attr('method');
+                    var target = $(this).attr('action');
+                    var data = $(this).serialize();
+
+                    $.ajax({
+                        type: method,
+                        data: data,
+                        url: target,
+                        beforeSend: function() {
+                            $(".login").attr("disabled", "disabled");
+                        }
+                    }).done(function(response) {
+                        if (response == "true") {
+                            $(".login").removeAttr("disabled");
+                            location.href = 'http://ppm.amikom.ac.id/';
+                        } else {
+                            $(".login").removeAttr("disabled");
+                            alert(response);
+                        }
+                    });
+                }
+
+                return false;
+            });
+        });
+        $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+            event.preventDefault();
+            $(this).ekkoLightbox();
+        });
+        $(document).on('click', '[data-toggle="change_akun"]', function(event) {
+            event.preventDefault();
+            console.log($(this).attr('href'));
+            $.get($(this).attr('href'), function(data) {
+                if (data == 'true')
+                    window.open('http://ppm.amikom.ac.id/', '_blank');
+            });
+        })
+        $(document).on('click', '[data-toggle="back_akun"]', function(event) {
+            event.preventDefault();
+            console.log($(this).attr('href'));
+            $.get($(this).attr('href'), function(data) {
+                if (data == 'true')
+                    window.close();
+            });
+        })
+    </script>
+
+
+
+</body>
+
+</html>

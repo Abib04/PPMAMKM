@@ -1,0 +1,87 @@
+RewriteOptions inherit
+RewriteEngine on
+#RewriteRule ^(.*)$ ./index.php/$1 [PT,L]
+#RewriteRule ^lib/ - [F,L,NC]
+#RewriteRule ^resource/?$ - [F,L,NC]
+#RewriteRule ^resource/assets/?$ - [F,L]
+#RewriteRule ^resource/admin/?$ - [F,L]
+#RewriteRule ^resource/mahasiswa/?$ - [F,L]
+#RewriteRule ^resource/mahasiswa/file_kehadiran_ortu/?$ - [F,L]
+#RewriteRule ^resource/mahasiswa/foto_mhs/?$ - [F,L]
+#RewriteRule ^pages/ - [F,L,NC]
+#RewriteRule ^module/ - [F,L,NC]
+#RewriteRule ^config/ - [F,L,NC]
+RewriteCond $1 !^(index\.php|images|css|js|robots\.txt|favicon\.ico|browse\.php)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{HTTP_REFERER} !^http://ppm.amikom.ac.id/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://ppm.amikom.ac.id$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.ppm.amikom.ac.id/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.ppm.amikom.ac.id$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://ppm.amikom.ac.id/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://ppm.amikom.ac.id$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.ppm.amikom.ac.id/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.ppm.amikom.ac.id$      [NC]
+RewriteRule .*\.(jpg|jpeg|gif|png|bmp)$ - [F,NC]
+<Files ~ "-nocache\.jpg">
+   Header set Cache-control "no-cache"
+</Files>
+RewriteCond %{HTTP_HOST} ^ppm\.amikom\.ac\.id$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.ppm\.amikom\.ac\.id$
+RewriteRule ^GuidebookMentor$ "http\:\/\/ppm\.amikom\.ac\.id\/api\/guidebook\/PPMAmikomMentor\.pdf" [R=301,L]
+RewriteCond %{HTTP_HOST} ^.*$
+RewriteRule ^Guidebook$ "http\:\/\/ppm\.amikom\.ac\.id\/api\/guidebook\/PPMAmikom\.pdf" [R=301,L]
+RewriteCond %{HTTP_HOST} ^.*$
+RewriteRule ^app$ "https\:\/\/play\.google\.com\/store\/apps\/details\?id\=com\.tupaiaer\.ppmone" [R=301,L]
+Options -Indexes
+
+
+<Files 403.shtml>
+order allow,deny
+allow from all
+</Files>
+
+deny from 172.104.184.11
+deny from 128.199.158.142
+deny from 170.64.223.147
+deny from 144.126.136.157
+deny from 95.173.222.39
+deny from 152.42.236.228
+
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php73” package as the default “PHP” programming language.
+# <IfModule mime_module>
+#   AddHandler application/x-httpd-ea-php73 .php .php7 .phtml
+# </IfModule>
+# php -- END cPanel-generated handler, do not edit
+
+# BEGIN cPanel-generated php ini directives, do not edit
+# Manual editing of this file may result in unexpected behavior.
+# To make changes to this file, use the cPanel MultiPHP INI Editor (Home >> Software >> MultiPHP INI Editor)
+# For more information, read our documentation (https://go.cpanel.net/EA4ModifyINI)
+# <IfModule php7_module>
+#    php_flag display_errors On
+#    php_value max_execution_time 30
+#    php_value max_input_time 60
+#    php_value max_input_vars 1000
+#    php_value memory_limit 128M
+#    php_value post_max_size 8M
+#    php_value session.gc_maxlifetime 1440
+#    php_value session.save_path "/var/cpanel/php/sessions/ea-php73"
+#    php_value upload_max_filesize 2M
+#    php_flag zlib.output_compression Off
+# </IfModule>
+# <IfModule lsapi_module>
+#    php_flag display_errors On
+#    php_value max_execution_time 30
+#    php_value max_input_time 60
+#    php_value max_input_vars 1000
+#    php_value memory_limit 128M
+#    php_value post_max_size 8M
+#    php_value session.gc_maxlifetime 1440
+#    php_value session.save_path "/var/cpanel/php/sessions/ea-php73"
+#    php_value upload_max_filesize 2M
+#    php_flag zlib.output_compression Off
+# </IfModule>
+# END cPanel-generated php ini directives, do not edit
