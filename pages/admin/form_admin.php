@@ -1,49 +1,74 @@
-<button class="btn btn-sm btn-primary" style="margin-bottom: 10px;" id="tambahAdmin">Tambah</button>
-<div id="pageAdmin" style="margin-bottom: 10px;">
-    <form action="<?php echo rules("act_insert_admin"); ?>" method="post" class="form-group-sm" id="formAdmin">
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" name="username" class="form-control" required />
+<button class="btn btn-sm btn-primary mb-3" style="margin-bottom: 20px; border-radius: 8px; font-weight: 600;" id="tambahAdmin"><i class="fa fa-plus"></i> Tambah Administrator</button>
+<div id="pageAdmin" style="margin-bottom: 30px; background: #fff; padding: 20px; border-radius: 12px; border: 1px solid #eaeaea; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+    <form action="<?php echo rules("act_insert_admin"); ?>" method="post" id="formAdmin">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label style="font-weight: 600;" for="username">Username</label>
+                    <input type="text" name="username" class="form-control" style="border-radius: 8px; box-shadow: none;" required />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label style="font-weight: 600;" for="user_level">Status User</label>
+                    <div class="radio" style="margin-top: 10px;">
+                        <label class="radio-inline" style="margin-right: 15px; font-weight: normal;">
+                            <input type="radio" name="status_admin" value="Y"> Aktif
+                        </label>
+                        <label class="radio-inline" style="font-weight: normal;">
+                            <input type="radio" name="status_admin" value="N"> Non-Aktif
+                        </label>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="user_level">User Level</label>
-            <select name="user_level" class="form-control" required>
-                <option value="">-- Pilih --</option>
-                <option value="super_admin">Super Admin</option>
-                <option value="ddi">Data dan Informasi</option>
-            </select>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label style="font-weight: 600;" for="password_">Password</label>
+                    <input class="form-control" name="password_" type="password" style="border-radius: 8px; box-shadow: none;" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label style="font-weight: 600;" for="password_retype">Ulangi Password</label>
+                    <input class="form-control" name="password_retype" type="password" style="border-radius: 8px; box-shadow: none;" />
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="password_">Password</label>
-            <input class="form-control" name="password_" type="password" />
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label style="font-weight: 600;" for="user_level">User Level</label>
+                    <select name="user_level" class="form-control" style="border-radius: 8px; box-shadow: none;" required>
+                        <option value="">-- Pilih Akses Level --</option>
+                        <option value="super_admin">Super Admin</option>
+                        <option value="ddi">Data dan Informasi</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label style="font-weight: 600;" for="tahun">Tahun Angkatan</label>
+                    <select name="tahun" class="form-control" style="border-radius: 8px; box-shadow: none;" required>
+                        <option value="">-- Pilih Tahun --</option>
+                        <?php
+                            $sql = db_read("select * from tahun");
+                            foreach($sql as $key=>$value){
+                                echo "<option value='$value[id_thn]'>$value[thn]</option>";
+                            }
+                        ?>
+                    </select>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="password_retype">Ketik Password Lagi</label>
-            <input class="form-control" name="password_retype" type="password" />
+        
+        <div class="form-group mt-3" style="text-align: right; margin-top: 15px;">
+            <button type="reset" class="btn btn-default" style="border-radius: 8px;" id="reset_admin">Batal</button>
+            <button type="submit" class="btn btn-primary" style="background: var(--primary); border: none; border-radius: 8px; font-weight: 600;" id="simpan_admin">Simpan Data</button>
         </div>
-        <div class="form-group">
-            <label for="tahun">Tahun</label>
-            <select name="tahun" class="form-control" required>
-                <option value="">-- Pilih --</option>
-                <?php
-                    $sql = db_read("select * from tahun");
-                    foreach($sql as $key=>$value){
-                        echo "<option value='$value[id_thn]'>$value[thn]</option>";
-                    }
-                ?>
-            </select>
-        </div>
-        <div class="form-group" style="margin-bottom:33px">
-            <label>Status : </label><br />
-            <label class="radio-inline">
-              <input type="radio" name="status_admin" value="Y"> Ya
-            </label>
-            <label class="radio-inline">
-              <input type="radio" name="status_admin" value="N"> Tidak
-            </label>
-        </div>
-        <button type="submit" class="btn btn-primary btn-sm" id="simpan_admin">Simpan</button>
-        <button type="reset" class="btn btn-default btn-sm" id="reset_admin">Batal</button>
     </form>
 </div>
 <table class="table table-hovered table-bordered" id="table_admin">

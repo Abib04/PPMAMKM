@@ -149,6 +149,7 @@
         </div>
     </div>
 <?php } ?>
+<?php if (basename($_SERVER['PHP_SELF']) != 'admin.php') : ?>
 <div class="panel panel-default">
     <div class="panel-heading" align="center"><b>Info</b></div>
     <div class="panel-body">
@@ -157,9 +158,9 @@
         $faqs = db_read($query);
         foreach ($faqs as $key => $value) { ?>
 
-            <p><b><?= $value['judul'] ?></b></p>
+            <p style="margin-bottom: 8px;"><b style="font-size: 18px;"><?= $value['judul'] ?></b></p>
 
-            <p align="justify"><?= $value['isi'] ?></p>
+            <p align="justify" style="font-size: 14px; line-height: 1.6; letter-spacing: -0.2px; white-space: pre-wrap; margin-bottom: 10px;"><?= str_replace('+62 851-3335-9681', '<span style="white-space: nowrap;">+62 851-3335-9681</span>', $value['isi']) ?></p>
             <hr>
         <?php } ?>
         <!--<a href='<?php echo rules("notice"); ?>&id=<?= $value['id'] ?>'></a>-->
@@ -192,3 +193,4 @@
         </div>
     </div>
 </div>
+<?php endif; ?>

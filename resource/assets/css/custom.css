@@ -106,7 +106,7 @@ body {
     color: #ffffff !important;
     text-decoration: none !important;
     font-weight: 800; /* Bolder text to remain legible at small size */
-    font-size: 0.75rem; /* Shrunk font so all items fit nicely without scrolling */
+    font-size: 0.9rem; /* Increased font-size as requested */
     text-transform: uppercase;
     letter-spacing: 0.5px;
     white-space: nowrap !important;
@@ -418,7 +418,7 @@ footer {
         color: #e67e22 !important; /* Orange text for maximum contrast & premium look */
         padding: 6px 14px;
         border-radius: 50px !important;
-        font-size: 0.75rem; 
+        font-size: 0.85rem; 
         font-weight: 800; /* Bold and highly readable now */
         text-align: center;
         box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Slight elevation */

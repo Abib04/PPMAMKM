@@ -547,31 +547,30 @@
                                     echo "Status : ";
                                     echo ($mhs[0]['konfirmasi'] == "Y") ? "<b>Sudah Konfirmasi</b>" : "<b>Belum Konfirmasi</b>";
                                 }else{
-                                    echo "<h3>Anda login sebagai <b>$_SESSION[username]</b></h3>";
+                                    include "pages/admin/dashboard_admin.php";
                                 }
                             ?>
-                            <br /><br />
                             <?php endif; ?>
                     <?php if(isset($_SESSION['logged_as'])):
-                            if(in_array($_SESSION['logged_as'] ,array("super_admin","mahasiswa"))): ?>
-                                <p align="left">
-                                    <b>PPM itu apa sih?</b><br /><br />
+                            if($_SESSION['logged_as'] == "mahasiswa"): ?>
+                                <p align="left" style="font-size: 16px; line-height: 1.7;">
+                                    <b style="font-size: 18px;">PPM itu apa sih?</b><br /><br />
                                     Penggalian potensi mahasiswa atau yang biasa disebut dengan PPM adalah agenda tahunan yang diselenggarakan oleh Universitas Amikom Yogyakarta dan dijalankan bersama dengan mahasiswa. Didalamnya berisikan konten penggalian potensi mahasiswa dan pengenalan kampus, agar mahasiswa baru dapat dengan mudah beradaptasi sebelum memulai perkuliahan.
                                 </p>
                                 <div class="panel panel-danger">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Perhatian</h3>
+                                    <h3 class="panel-title" style="font-size: 18px; font-weight: bold;">Perhatian</h3>
                                 </div>
                                 <div class="panel-body">
-                                    <p align="justify">
+                                    <div align="justify" style="font-size: 16px; line-height: 1.7; margin-bottom: 10px;">
                                         Yang harus dilakukan untuk peserta PPM, yaitu:
-                                        <ul>
-                                            <li>Setelah Login, lakukan <b>konfirmasi akun</b> dengan menghubungi WhatsApp hotline PPM pada nomor <a href="https://wa.me/6285133359681" target="_blank">+62 851-3335-9681</a></li>
+                                        <ul style="font-size: 14px; line-height: 1.6; margin-top: 10px; letter-spacing: -0.2px;">
+                                            <li>Setelah Login, lakukan <b>konfirmasi akun</b> dengan menghubungi WhatsApp hotline PPM pada nomor <a href="https://wa.me/6285133359681" target="_blank" style="white-space: nowrap;">+62 851-3335-9681</a></li>
                                             <li>Setelah akun aktif, lengkapi data Potensi, Prestasi, dan Keluarga / Wali kalian</li>
                                             <li>Follow IG PPM : <a href="https://www.instagram.com/ppm_amikom/">@ppm_amikom</a> untuk info terbaru tentang PPM 2025</li>
                                             <li>Hubungi kontak kami jika terdapat kendala teknis</li>
                                         </ul>
-                                    </p>
+                                    </div>
                                 </div>
                                 
                                 <?php
@@ -586,26 +585,26 @@
                                     </div> -->
                                 <?php endif;
                             else: ?>
-                                <p align="justify">
-                                    <b>PPM itu apa sih?</b><br /><br />
+                                <p align="justify" style="font-size: 16px; line-height: 1.7;">
+                                    <b style="font-size: 18px;">PPM itu apa sih?</b><br /><br />
                                     Penggalian potensi mahasiswa atau yang biasa disebut dengan PPM adalah agenda tahunan yang diselenggarakan oleh Universitas Amikom Yogyakarta dan dijalankan bersama dengan mahasiswa. Didalamnya berisikan konten Selamat datang ppm galian potensi mahasiswa dan pengenalan kampus, agar mahasiswa baru dapat dengan mudah beradaptasi sebelum memulai perkuliahan.
                                 </p>
                                 <div class="panel panel-danger">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">Perhatian</h3>
+                                        <h3 class="panel-title" style="font-size: 18px; font-weight: bold;">Perhatian</h3>
                                     </div>
                                     <div class="panel-body">
-                                        <p align="justify">
+                                        <div align="justify" style="font-size: 16px; line-height: 1.7; margin-bottom: 10px;">
                                             Yang harus dilakukan untuk peserta PPM, yaitu:
-                                        <ul>
+                                        <ul style="font-size: 14px; line-height: 1.6; margin-top: 10px; letter-spacing: -0.2px;">
                                             <li>Siapkan NIM dan Data Dirimu</li>
                                             <li>Registrasi dan Lengkapi data diri pada masing-masing akun.</li>
-                                            <li>Setelah Login, lakukan <b>konfirmasi akun</b> dengan menghubungi WhatsApp hotline PPM pada nomor <a href="https://wa.me/6285133359681" target="_blank">+62 851-3335-9681</a></li>
+                                            <li>Setelah Login, lakukan <b>konfirmasi akun</b> dengan menghubungi WhatsApp hotline PPM pada nomor <a href="https://wa.me/6285133359681" target="_blank" style="white-space: nowrap;">+62 851-3335-9681</a></li>
                                             <li>Setelah akun aktif, lengkapi data Potensi, Prestasi, dan Keluarga / Wali kalian</li>
                                             <li>Follow IG PPM : <a href="https://www.instagram.com/ppm_amikom/">@ppm_amikom</a> untuk info terbaru tentang PPM 2025</li>
                                             <li>Hubungi kontak kami jika terdapat kendala teknis</li>
                                         </ul>
-                                        </p>
+                                        </div>
                                     </div>
                                 <?php endif; ?>
                             </div>

@@ -4,14 +4,14 @@ $query = "SELECT * FROM pengumuman";
 $faqs = db_read($query);
 foreach($faqs as $key => $value){?>
     <div class="bs-callout bs-callout-info ">
-      <h4><?=$value['judul']?>
+      <h4 style="font-size: 18px; font-weight: bold; margin-bottom: 10px;"><?=$value['judul']?>
 <?php 
 if($_SESSION['login'] == 1 and ($_SESSION['logged_as'] == "super_admin" or $_SESSION['logged_as'] == "ddi")){
 ?>
 <a href="<?= rules('act_del_pengumuman')."&id=".$value['id'] ?>" type="button" class="close delete" aria-hidden="true">&times;</a>
 <?php } ?>
 </h4>
-<p><?=$value['isi']?></p>
+<p style="font-size: 14px; line-height: 1.6; letter-spacing: -0.2px; white-space: pre-wrap; margin-bottom: 15px;"><?= str_replace('+62 851-3335-9681', '<span style="white-space: nowrap;">+62 851-3335-9681</span>', $value['isi']) ?></p>
 </div>
 <?php } ?>
 </div>

@@ -1,5 +1,5 @@
 <?php
-session_save_path(getcwd() . "/logs");
+// session_save_path(getcwd() . "/logs");
 include "lib/db_lib.php";
 sess_start();
 init_();
@@ -65,9 +65,9 @@ $aktif = "tutup"; // Definisi variabel aktif agar tidak error
 			<div class="nav-auth-btns" style="margin-left: 15px;">
 				<?php if (!isset($_SESSION['login']) || !$_SESSION['login']) : ?>
 					<?php if ($aktif == "buka") : ?>
-						<a href="<?php echo rules("reg_mhs"); ?>" class="btn-nav btn-register">Daftar</a>
+						<a href="<?php echo rules("reg_mhs"); ?>" class="btn-nav btn-register">Registrasi</a>
 					<?php endif; ?>
-					<a href="javascript:void(0);" onclick="document.getElementById('formlogin').scrollIntoView({behavior: 'smooth', block: 'center'})" class="btn-nav btn-login">Masuk</a>
+					<a href="javascript:void(0);" data-toggle="modal" data-target="#loginModal" class="btn-nav btn-login">Masuk</a>
 				<?php else: ?>
 					<a href="<?php echo rules('act_logout'); ?>" class="btn-nav btn-login" style="background:var(--primary); color:white; border:none;">Keluar</a>
 				<?php endif; ?>
@@ -80,22 +80,31 @@ $aktif = "tutup"; // Definisi variabel aktif agar tidak error
 		</div>
 
 		<!-- Login Section (Moved to Section 3) -->
+		<!-- Login Modal Section -->
 		<?php if (!$_SESSION['login']) : ?>
-			<div class="login-section">
-				<h3 class="text-center mb-4">Login Area</h3>
-				<form id="formlogin" method="post" action="<?php echo rules("act_login"); ?>">
-					<label>Nomor Mahasiswa / Username</label>
-					<input name="username" size="15" id="usr" class="usr" type="text" placeholder="Masukkan ID">
-					<label>Password</label>
-					<input name="password" size="15" id="pwd" class="pwd" type="password" placeholder="••••••••">
-					<button type="submit" class="login">Masuk ke Akun</button>
-				</form>
-				<div class="text-center mt-3">
-					<?php if ($aktif == "buka") : ?>
-						<a href="<?php echo rules("reg_mhs"); ?>" class="text-muted small">Registrasi Akun Baru</a>
-					<?php endif; ?>
-				</div>
-			</div>
+            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true" style="z-index: 9999;">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content" style="border-radius: 24px; border: none; background: transparent; box-shadow: none;">
+			      <div class="login-section" style="margin: 0 auto; width: 100%;">
+			      	<h3 class="text-center mb-4">LOGIN AREA</h3>
+			      	<form id="formlogin" method="post" action="<?php echo rules("act_login"); ?>">
+			      		<label>Nomor Mahasiswa</label>
+			      		<input name="username" size="15" id="usr" class="usr" type="text" placeholder="__.__.____">
+			      		<label>Password</label>
+			      		<input name="password" size="15" id="pwd" class="pwd" type="password">
+			      		<button type="submit" class="login btn-block mt-3" style="width: 100%; border-radius: 14px;"> Login </button>
+			      	</form>
+			      	<div class="text-center mt-3">
+			      		<?php if ($aktif == "buka") : ?>
+			      			<a href="<?php echo rules("reg_mhs"); ?>" class="text-muted small">Registrasi PPM</a>
+			      		<?php else : ?>
+							<a onClick="alert('Maaf, pendaftaran sudah ditutup ya kak!')" class="text-muted small">Registrasi Tutup</a>
+						<?php endif; ?>
+			      	</div>
+			      </div>
+                </div>
+              </div>
+            </div>
 		<?php else: ?>
 			<div class="text-center mb-4">
 				<div class="nav-wrapper p-3 d-inline-block" style="margin-bottom: 20px;">
@@ -149,7 +158,7 @@ $aktif = "tutup"; // Definisi variabel aktif agar tidak error
 					}).done(function(response) {
 						if (response == "true") {
 							$(".login").removeAttr("disabled");
-							location.href = '<?php echo base_url(); ?>';
+							location.href = 'redirect.php';
 						} else {
 							$(".login").removeAttr("disabled");
 							alert(response);
