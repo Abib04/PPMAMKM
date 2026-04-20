@@ -17,7 +17,7 @@ $aktif = "tutup"; // Definisi variabel aktif agar tidak error
 	<link rel="stylesheet" href="resource/assets/css/bootstrap.timepicker.css" type="text/css">
 	<link rel="stylesheet" href="resource/assets/css/jquery.dataTables.min.css" type="text/css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" type="text/css">
-	<link rel="stylesheet" href="resource/assets/css/custom.css?v=<?php echo time(); ?>" type="text/css">
+	<link rel="stylesheet" href="resource/assets/css/custom.css?v=2.0.1" type="text/css">
 	<link rel="stylesheet" href="resource/assets/css/docs.css" type="text/css">
 	<link rel="stylesheet" href="resource/assets/css/superfish.css" type="text/css" media="all">
 	<link rel="stylesheet" type="text/css" href="resource/assets/css/dataTables.bootstrap.min.css">
@@ -36,17 +36,15 @@ $aktif = "tutup"; // Definisi variabel aktif agar tidak error
         Kamu berada di website lama PPM. Pendaftaran PPM <?php echo date('Y') ?> dialihkan ke website
         <strong><a href="https://ppm.amikom.id" style="color: #ffe740">ppm.amikom.id</a></strong>
     -->
-
-	</div>
 	<div class="hero-header">
-		<div class="container" style="text-align: center;">
-			<a href="http://www.amikom.ac.id/index.php/main" target="_blank" style="display: inline-block; margin-bottom: 30px;">
-				<img src="<?php echo base_url("resource/assets/images/Logo_Amikom_color.png"); ?>" class="top-brand" style="max-height: 110px; filter: brightness(0) invert(1) drop-shadow(0 4px 10px rgba(0,0,0,0.3)); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" alt="Universitas Amikom" />
+		<div class="container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; width: 100%;">
+			<a href="http://www.amikom.ac.id/index.php/main" target="_blank" style="display: inline-block; margin-bottom: 20px;">
+				<img src="<?php echo base_url("resource/assets/images/Logo_Amikom_color.png"); ?>" class="top-brand" style="max-height: 110px; filter: brightness(0) invert(1) drop-shadow(0 4px 10px rgba(0,0,0,0.3));" alt="Universitas Amikom" />
 			</a>
 			<br>
 			<!-- Framed PPM 2025 Banner -->
-			<div style="animation: float 4s ease-in-out infinite; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.2); padding: 5px; border-radius: 25px; display: inline-block; box-shadow: 0 15px 35px rgba(0,0,0,0.3); position: relative; z-index: 2; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
-				<img src="<?php echo base_url("resource/assets/images/header_temp_2025.png"); ?>" style="max-height: 200px; border-radius: 20px; display: block;" alt="PPM 2025 Banner">
+			<div style="animation: float 4s ease-in-out infinite; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.2); padding: 5px; border-radius: 25px; display: block; width: 100%; box-shadow: 0 15px 35px rgba(0,0,0,0.3); position: relative; z-index: 2; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+				<img src="<?php echo base_url("resource/assets/images/header_temp_2025.png"); ?>" style="max-height: 200px; max-width: 100%; border-radius: 20px; display: block; margin: 0 auto;" alt="PPM 2025 Banner">
 			</div>
 		</div>
 	</div>

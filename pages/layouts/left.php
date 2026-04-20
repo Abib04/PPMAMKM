@@ -89,56 +89,42 @@
                     ?>
                         <ul class="nav nav-pills nav-stacked">
 
-                            <li <?php echo ($page == "konfirmasi_npm") ? "class='active'" : ""; ?>><a href="<?php echo rules('konfirmasi_aja'); ?>">Konfirmasi Mahasiswa</a></li>
+                        <li <?php echo ($page == "konfirmasi_npm") ? "class='active'" : ""; ?>><a href="<?php echo rules('konfirmasi_aja'); ?>"><i class="fa fa-check-circle"></i> Konfirmasi Mahasiswa</a></li>
 
-                            <li <?php echo ($page == "data_mhs" || $page == "detail_mhs") ? "class='active'" : ""; ?>><a href="<?php echo rules('data_mhs'); ?>">Data Mahasiswa</a></li>
+                        <li <?php echo ($page == "data_mhs" || $page == "detail_mhs") ? "class='active'" : ""; ?>><a href="<?php echo rules('data_mhs'); ?>"><i class="fa fa-users"></i> Data Mahasiswa</a></li>
 
-                            <li <?php echo ($page == "data_mhs_prestasi") ? "class='active'" : ""; ?>><a href="<?php echo rules('data_prestasi'); ?>">Prestasi Mahasiswa</a></li>
+                        <li <?php echo ($page == "data_mhs_prestasi") ? "class='active'" : ""; ?>><a href="<?php echo rules('data_prestasi'); ?>"><i class="fa fa-trophy"></i> Prestasi Mahasiswa</a></li>
 
-                            <li <?php echo ($page == "data_mhs_potensi") ? "class='active'" : ""; ?>><a href="<?php echo rules('data_potensi'); ?>">Potensi Mahasiswa</a></li>
+                        <li <?php echo ($page == "data_mhs_potensi") ? "class='active'" : ""; ?>><a href="<?php echo rules('data_potensi'); ?>"><i class="fa fa-bolt"></i> Potensi Mahasiswa</a></li>
 
-                            <li <?php echo ($page == "data_panitia") ? "class='active'" : ""; ?>><a href="<?php echo rules('data_panitia'); ?>">Data Panitia</a></li>
+                        <li <?php echo ($page == "data_panitia") ? "class='active'" : ""; ?>><a href="<?php echo rules('data_panitia'); ?>"><i class="fa fa-id-badge"></i> Data Panitia</a></li>
 
-                            <?php if ($_SESSION['login'] == 1 and $_SESSION['logged_as'] == "super_admin") : ?>
-                                <li <?php echo ($page == "data_admin") ? "class='active'" : ""; ?>><a href="<?php echo rules('data_admin'); ?>">Data Administrator</a></li>
-                            <?php endif; ?>
+                        <?php if ($_SESSION['login'] == 1 and $_SESSION['logged_as'] == "super_admin") : ?>
+                            <li <?php echo ($page == "data_admin") ? "class='active'" : ""; ?>><a href="<?php echo rules('data_admin'); ?>"><i class="fa fa-user-shield"></i> Data Administrator</a></li>
+                        <?php endif; ?>
 
-                            <li <?php echo ($page == "d_acara") ? "class='active'" : ""; ?>><a href="<?php echo rules('daftar_acara'); ?>">Acara</a></li>
+                        <li <?php echo ($page == "d_acara") ? "class='active'" : ""; ?>><a href="<?php echo rules('daftar_acara'); ?>"><i class="fa fa-calendar"></i> Acara</a></li>
 
+                        <li <?php echo ($page == "peserta_acara") ? "class='active'" : ""; ?>><a href="<?php echo rules('daftar_peserta_acara'); ?>"><i class="fa fa-user-plus"></i> Peserta Acara</a></li>
 
-                            <li <?php echo ($page == "peserta_acara") ? "class='active'" : ""; ?>><a href="<?php echo rules('daftar_peserta_acara'); ?>">Peserta Acara</a></li>
+                        <?php if ($_SESSION['login'] == 1 and $_SESSION['logged_as'] == "super_admin") : ?>
+                            <li <?php echo ($page == "d_ruangan") ? "class='active'" : ""; ?>><a href="<?php echo rules('daftar_ruangan'); ?>"><i class="fa fa-building"></i> Daftar Ruangan</a></li>
+                        <?php endif; ?>
 
+                        <?php if ($_SESSION['login'] == 1 and $_SESSION['logged_as'] == "super_admin") : ?>
+                            <li <?php echo ($page == "data_kelompok") ? "class='active'" : ""; ?>><a href="<?php echo rules('daftar_kelompok'); ?>"><i class="fa fa-users-rectangle"></i> Kloter & Kelompok</a></li>
+                        <?php endif; ?>
 
-                            <?php if ($_SESSION['login'] == 1 and $_SESSION['logged_as'] == "super_admin") : ?>
-                                <li <?php echo ($page == "d_ruangan") ? "class='active'" : ""; ?>><a href="<?php echo rules('daftar_ruangan'); ?>">Daftar Ruangan</a></li>
-                            <?php endif; ?>
+                        <?php if ($_SESSION['login'] == 1 and $_SESSION['logged_as'] == "super_admin") : ?>
+                            <li <?php echo ($page == "sesi") ? "class='active'" : ""; ?>><a href="<?php echo rules('sesi'); ?>"><i class="fa fa-clock"></i> Sesi</a></li>
+                        <?php endif; ?>
 
-                            <?php if ($_SESSION['login'] == 1 and $_SESSION['logged_as'] == "super_admin") : ?>
-                                <li <?php echo ($page == "data_kelompok") ? "class='active'" : ""; ?>><a href="<?php echo rules('daftar_kelompok'); ?>">Kloter dan Kelompok</a></li>
-                            <?php endif; ?>
-
-                            <?php if ($_SESSION['login'] == 1 and $_SESSION['logged_as'] == "super_admin") : ?>
-                                <li <?php echo ($page == "sesi") ? "class='active'" : ""; ?>><a href="<?php echo rules('sesi'); ?>">Sesi</a></li>
-                            <?php endif; ?>
-
-                            <?php /*if($_SESSION['login'] == 1 and $_SESSION['logged_as'] == "super_admin") : ?>
-                                <li><a href="<?php echo rules('peserta_oh'); ?>">Peserta Open House</a></li>
-                            <?php endif; ?>
-
-                            <?php if($_SESSION['login'] == 1 and $_SESSION['logged_as'] == "super_admin") : ?>
-                                <li><a href="<?php echo rules('peserta_pk'); ?>">Peserta Pembekalan Karir</a></li>
-                            <?php endif; ?>
-
-                            <?php if($_SESSION['login'] == 1 and $_SESSION['logged_as'] == "super_admin") : ?>
-                                <li><a href="<?php echo rules('peserta_om'); ?>">Peserta Orientasi Mahasiswa</a></li>
-                            <?php endif; */ ?>
-
-                            <li <?php echo ($page == "data_pendukung") ? "class='active'" : ""; ?>><a href="<?php echo rules('data_pendukung'); ?>">Data Pendukung</a></li>
-                            <li <?php echo ($page == "list_pesan") ? "class='active'" : ""; ?>><a href="<?php echo rules('list_pesan'); ?>">Kritik dan Saran</a></li>
-                            <li <?php echo ($page == "survey_build") ? "class='active'" : ""; ?>><a href="<?php echo rules('survey_build'); ?>">Survey</a></li>
-                            <li <?php echo ($page == "faq") ? "class='active'" : ""; ?>><a href="<?php echo rules('faq'); ?>">FAQ</a></li>
-                            <li <?php echo ($page == "ganti_passwd") ? "class='active'" : ""; ?>><a href="<?php echo rules('ganti_passwd'); ?>">Ganti Password</a></li>
-                            <li <?php echo ($page == "pengumuman") ? "class='active'" : ""; ?>><a href="<?php echo rules('pengumuman'); ?>">Pengumuman</a></li>
+                        <li <?php echo ($page == "data_pendukung") ? "class='active'" : ""; ?>><a href="<?php echo rules('data_pendukung'); ?>"><i class="fa fa-folder-open"></i> Data Pendukung</a></li>
+                        <li <?php echo ($page == "list_pesan") ? "class='active'" : ""; ?>><a href="<?php echo rules('list_pesan'); ?>"><i class="fa fa-comments"></i> Kritik dan Saran</a></li>
+                        <li <?php echo ($page == "survey_build") ? "class='active'" : ""; ?>><a href="<?php echo rules('survey_build'); ?>"><i class="fa fa-poll"></i> Survey</a></li>
+                        <li <?php echo ($page == "faq") ? "class='active'" : ""; ?>><a href="<?php echo rules('faq'); ?>"><i class="fa fa-question-circle"></i> FAQ</a></li>
+                        <li <?php echo ($page == "ganti_passwd") ? "class='active'" : ""; ?>><a href="<?php echo rules('ganti_passwd'); ?>"><i class="fa fa-key"></i> Ganti Password</a></li>
+                        <li <?php echo ($page == "pengumuman") ? "class='active'" : ""; ?>><a href="<?php echo rules('pengumuman'); ?>"><i class="fa fa-bullhorn"></i> Pengumuman</a></li>
                         </ul>
 
                 <?php

@@ -30,14 +30,107 @@ $page = (isset($_GET['page'])) ? htmlspecialchars($_GET['page']) : NULL;
         .admin-main { padding: 30px; }
         .admin-brand { padding-bottom: 30px; border-bottom: 1px solid #eee; margin-bottom: 20px; text-align: center; }
         .admin-brand img { max-height: 50px; }
+        
+        /* Modern Sidebar Menu */
+        .navi .nav-pills > li > a {
+            color: #475569;
+            font-weight: 500;
+            padding: 12px 15px;
+            border-radius: 10px;
+            margin-bottom: 5px;
+            transition: all 0.3s ease;
+            border: none !important;
+        }
+        .navi .nav-pills > li.active > a,
+        .navi .nav-pills > li.active > a:hover,
+        .navi .nav-pills > li.active > a:focus {
+            background-color: var(--primary) !important;
+            color: #fff !important;
+            box-shadow: 0 4px 12px rgba(57, 10, 97, 0.2);
+        }
+        .navi .nav-pills > li > a:hover {
+            background-color: #f1f5f9;
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+        .navi .nav-pills i {
+            width: 20px;
+            margin-right: 10px;
+            text-align: center;
+        }
+
+        /* Responsive Admin Layout */
+        .mobile-header {
+            display: none;
+            background: #fff;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-header { display: flex; }
+            .admin-sidebar {
+                position: fixed;
+                left: -280px;
+                top: 0;
+                width: 280px;
+                height: 100vh;
+                z-index: 1001;
+                transition: all 0.3s ease;
+                overflow-y: auto;
+            }
+            body.sidebar-open .admin-sidebar {
+                left: 0;
+            }
+            .admin-sidebar-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(0,0,0,0.5);
+                z-index: 1000;
+            }
+            body.sidebar-open .admin-sidebar-overlay {
+                display: block;
+            }
+            .admin-main {
+                padding: 15px;
+                width: 100%;
+            }
+            .admin-dashboard-header {
+                flex-direction: column;
+                align-items: flex-start !important;
+                gap: 15px;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+        <div class="d-flex align-items-center">
+            <img src="resource/assets/images/Logo_Amikom_color.png" alt="Logo" style="height: 30px; margin-right: 10px;">
+            <h6 style="margin: 0; font-weight: bold; color: var(--primary);">PPM ADMIN</h6>
+        </div>
+        <button id="sidebarToggle" class="btn btn-link" style="color: var(--primary); font-size: 20px; padding: 0;">
+            <i class="fa fa-bars"></i>
+        </button>
+    </div>
+
+    <div class="admin-sidebar-overlay" id="sidebarOverlay"></div>
+
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
             <div class="col-md-2 col-sm-4 admin-sidebar">
-                <div class="admin-brand">
+                <div class="admin-brand hidden-xs">
                     <img src="resource/assets/images/Logo_Amikom_color.png" alt="Logo">
                     <h5 style="color: var(--primary); font-weight: bold; margin-top: 10px;">PPM ADMIN</h5>
                 </div>
@@ -46,13 +139,13 @@ $page = (isset($_GET['page'])) ? htmlspecialchars($_GET['page']) : NULL;
 
             <!-- Content -->
             <div class="col-md-10 col-sm-8 admin-main">
-                <div class="d-flex justify-content-between align-items-center mb-4" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; background: #fff; padding: 15px 25px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
+                <div class="admin-dashboard-header d-flex justify-content-between align-items-center mb-4" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; background: #fff; padding: 15px 25px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
                     <h4 style="margin: 0; font-weight: bold; color: #333;">
                         <i class="fa fa-dashboard text-muted"></i> 
                         <?= is_null($page) ? 'Main Dashboard' : 'Manajemen Data' ?>
                     </h4>
                     <div>
-                        <span class="text-muted mr-3">Welcome, <strong><?= $_SESSION['fullname'] ?></strong></span>
+                        <span class="text-muted mr-3">Welcome, <strong><?= $_SESSION['fullname'] ?? $_SESSION['username'] ?? 'Admin' ?></strong></span>
                         <a href="logout.php" class="btn btn-sm btn-danger" style="margin-left: 15px; border-radius: 8px;">Keluar</a>
                     </div>
                 </div>
@@ -63,5 +156,13 @@ $page = (isset($_GET['page'])) ? htmlspecialchars($_GET['page']) : NULL;
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#sidebarToggle, #sidebarOverlay').on('click', function() {
+                $('body').toggleClass('sidebar-open');
+            });
+        });
+    </script>
 </body>
 </html>
